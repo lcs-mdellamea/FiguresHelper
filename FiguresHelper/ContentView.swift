@@ -13,8 +13,15 @@ struct CircleView: View {
     // "radius" is the name.
     // "Double is the data type.
     // By adding = 15.00    we are just providing a default value.
-    
-    var radius : Double = 45.00
+    // Input - we need this from the user
+    // We want SwiftUI to update the user interface based on what the user selects.
+    // To do this, we use a special piece of syntax
+    // called a "property wrapper"
+    //
+    // @State
+    //
+    // THis marks the peroperty as being one that SwiftUI should "watch for changes.
+    @State var radius : Double = 15.00
     
     //MARK: Computed Properties
     
@@ -34,13 +41,15 @@ struct CircleView: View {
                 // Show the selected radius value
                 HStack {
                     Spacer()
+                    // $ changes value of property (radius) with the slider
                     Text("\(radius)")
                         .font(.title2)
                         .bold()
                     Spacer()
                 }
-                
-                Slider(value: .constant(15.0),
+                //Sytax of $ says to use this property (radius) and BIND IT to this control
+                // To "bind" means that when the control change, the property's value changes.
+                Slider(value: $radius,
                        in: 0.0...100.0,
                        label: {
                     Text("Radius")
