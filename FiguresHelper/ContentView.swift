@@ -7,30 +7,75 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct CircleView: View {
+    
+    //MARK: Stored Properties
+    // "radius" is the name.
+    // "Double is the data type.
+    // By adding = 15.00    we are just providing a default value.
+    
+    var radius : Double = 45.00
+    
+    //MARK: Computed Properties
+    
+    var area: Double {
+    return Double.pi * radius * radius
+    }
+    // User interface
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                
-            Text("Circle")
+        VStack(alignment: .leading, spacing: 20) {
             
-            Text("Radius")
+            // Input
+            Text("Radius:")
+                .bold()
+            
+            Group {
                 
-                 HStack {
-                     Spacer()
-                     Text("25.0")
-                     Spacer()
-                     
-                     Slider()
-                     
-                 }
+                // Show the selected radius value
+                HStack {
+                    Spacer()
+                    Text("\(radius)")
+                        .font(.title2)
+                        .bold()
+                    Spacer()
+                }
+                
+                Slider(value: .constant(15.0),
+                       in: 0.0...100.0,
+                       label: {
+                    Text("Radius")
+                },
+                       minimumValueLabel: {
+                    Text("0.0")
+                },
+                       maximumValueLabel: {
+                    Text("100.0")
+                })
+
             }
+            
+                        
+            // Output
+            Text("Area:")
+                .bold()
+            
+            Text("706.9 square units")
+            Text("\(area) suare units")
+                .font(.title2)
+            
+            
+            Spacer()
+            
         }
+        .padding()
+        .navigationTitle("Circle")
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct CircleView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        NavigationView {
+            CircleView()
+        }
     }
 }
