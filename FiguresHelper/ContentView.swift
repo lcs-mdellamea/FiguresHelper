@@ -43,6 +43,7 @@ struct CircleView: View {
                     Spacer()
                     // $ changes value of property (radius) with the slider
                     Text("\(radius)")
+                    Text("\( String(format: "%.0f", radius) )")
                         .font(.title2)
                         .bold()
                     Spacer()
@@ -69,9 +70,11 @@ struct CircleView: View {
             Text("Area:")
                 .bold()
             
-            Text("706.9 square units")
             Text("\(area) suare units")
                 .font(.title2)
+            
+            Text("\( String(format: "%.2f", area) square units")
+                .font(.laregTitle)
             
             
             Spacer()
@@ -84,8 +87,6 @@ struct CircleView: View {
 
 struct CircleView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
             CircleView()
-        }
     }
 }
